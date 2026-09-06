@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AIGC 影像、影视后期与视觉内容创作作品集" />
+  <title>季彦君｜个人作品集</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="aero-shards-bg" data-aero-shards aria-hidden="true"></div>
+  <div class="noise"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" data-brand>JY / PORTFOLIO</a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#works">作品</a><a href="#about">关于</a><a href="#contact">联系</a>
+    </nav>
+    <span class="header-index">© <span data-year></span></span>
+  </header>
+
+  <main id="top">
+    <section class="hero page-section">
+      <div class="hero-meta"><span class="eyebrow" data-hero-kicker></span><span class="hero-mark">01—10</span></div>
+      <div class="hero-grid">
+        <div>
+          <p class="hero-overline" data-hero-overline></p>
+          <h1 data-hero-title></h1>
+        </div>
+        <div class="hero-copy"><p data-hero-intro></p><a class="text-link" href="#film">查看作品 <span>↘</span></a></div>
+      </div>
+      <div class="hero-foot"><span data-hero-location></span><span data-hero-note></span></div>
+    </section>
+
+    <section class="data-strip page-section" id="core-data">
+      <div class="section-heading"><span class="section-no">02</span><h2>人物资料</h2><p>关于创作者的工作数据。</p></div>
+      <div class="core-data-layout"><div class="profile-card-mount" data-profile-card></div><div class="stats" data-stats></div></div>
+    </section>
+
+    <section class="page-section compact-section" id="film">
+      <div class="section-heading"><span class="section-no">03</span><h2>影片</h2><p>导演、拍摄、剪辑与后期。</p></div>
+      <div class="film-list" data-film-list></div>
+    </section>
+
+    <section class="page-section" id="visual">
+      <div class="section-heading"><span class="section-no">04</span><h2>视觉</h2><p>AI 图像生成、视觉策划与动态影像。</p></div>
+      <div class="accordion-gallery-mount" data-accordion-gallery></div>
+    </section>
+
+    <section class="case-study page-section" id="case-study">
+      <div class="section-heading"><span class="section-no">05</span><h2>项目案例</h2><p>开发中的影像项目。</p></div>
+      <div data-case-study></div>
+    </section>
+
+    <section class="page-section split-section" id="experience">
+      <div class="section-heading"><span class="section-no">06</span><h2>经历</h2></div>
+      <div class="timeline" data-experience></div>
+    </section>
+
+    <section class="page-section split-section" id="skills">
+      <div class="section-heading"><span class="section-no">07</span><h2>技能</h2></div>
+      <div class="skills-grid" data-skills></div>
+    </section>
+
+    <section class="about page-section" id="about">
+      <div class="section-heading"><span class="section-no">08</span><h2>关于我</h2></div>
+      <div class="about-layout"><p class="about-lead" data-about-lead></p><div class="about-body" data-about-body></div></div>
+    </section>
+
+    <section class="contact page-section" id="contact">
+      <div class="section-heading"><span class="section-no">09</span><h2>联系方式</h2></div>
+      <div class="contact-layout"><p data-contact-copy></p><a class="email" data-email></a></div>
+    </section>
+  </main>
+  <footer class="site-footer"><span data-footer-name></span><span>为影像与持续创作而设。</span></footer>
+  <script src="data/portfolio-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
