@@ -1,124 +1,60 @@
-# 季彦君｜一页式个人网页作品集
+# 季彦君｜个人作品集（百度网盘链接版）
 
-这是一个纯 HTML + CSS + JavaScript 的静态作品集网页。网页内容由 `data/portfolio-data.js` 驱动，页面结构、样式与数据已经分离。
+纯 HTML + CSS + JavaScript 静态网页，可部署到 GitHub Pages。
+影片点击后在新标签页打开百度网盘，提取码已包含在链接中。
+无需腾讯云、服务器、数据库或构建命令。简历不公开，仅保留邮箱。
 
 ## 文件结构
 
-```text
-index.html                 页面结构，只放 section、容器和导航
-style.css                  黑白灰 + 暗红的响应式样式
-script.js                  读取数据并渲染页面
-data/portfolio-data.js     后续替换内容的唯一入口
-assets/images/             项目图集、AI 视觉、分镜与场景图
-assets/thumbnails/         所有视频/项目封面图
-assets/videos/             本地 mp4 视频
-```
+- index.html：页面结构
+- style.css：样式
+- script.js：根据数据渲染页面
+- data/portfolio-data.js：全部个人资料、作品、图片路径及视频链接
+- assets/images/：图片与图集
+- assets/thumbnails/：视频封面
+- .nojekyll：让 GitHub Pages 直接提供静态文件
+- .gitignore：排除视频原片、密钥和临时文件
 
-## 以后怎么替换内容
+## 修改内容
 
-打开 `data/portfolio-data.js`，只改 `window.PORTFOLIO_DATA` 里面的值即可。
+打开 data/portfolio-data.js，保留引号、逗号和括号，只修改相应字段：
 
-### 首页文字
+| 内容 | 数据位置 |
+| --- | --- |
+| 首页文字与地名 | hero |
+| 姓名、品牌、年份 | site |
+| 人物资料卡 | profile |
+| 数据统计 | stats |
+| 影片标题、说明、分工 | film[].title / meta / role |
+| 影片网盘地址 | film[].link（保留 ?pwd=提取码） |
+| 视觉图集封面、标题、图片 | visualAccordion[].image / label / gallery |
+| 项目案例图片和多行滚动图片 | caseStudy.image / galleryRows |
+| 项目案例介绍及状态 | caseStudy（保持开发中） |
+| 经历与荣誉 | experienceGroups |
+| 技能 | skills |
+| 关于我 | about |
+| 邮箱 | site.email 与 contact.email |
 
-修改 `hero`：
-
-```js
-hero: {
-  kicker: "AIGC / FILM / VISUAL",
-  overline: "Digital media artist",
-  title: "你的首页主标题",
-  intro: "你的首页简介",
-  location: "Shanghai / Hangzhou",
-  note: "Available for selected projects"
-}
-```
-
-### Core Data 人物资料卡
-
-修改 `profile` 对象即可替换资料卡中的姓名、身份、网名、状态、头像和三条资料。资料卡使用原生 JavaScript 实现了鼠标跟随高光与轻微 3D 倾斜效果，不需要安装 React。
-
-```js
-profile: {
-  name: "你的名字",
-  title: "你的身份描述",
-  handle: "你的网名",
-  status: "开放合作",
-  contactText: "联系我",
-  avatar: "assets/images/头像.jpg",
-  facts: ["教育经历", "常用工具", "核心方向"]
-}
-```
-
-### 作品展示图片墙
-
-修改 `showcaseImages` 数组即可替换三行循环展示的图片。页面加载时会随机打乱图片顺序，并自动分配到三行；鼠标移入时会暂停当前行。
-
-```js
-showcaseImages: [
-  "assets/images/你的图片.jpg",
-  "assets/images/另一张图片.png"
-]
-```
-
-### 项目标题、简介、角色和分类
-
-修改 `selectedWorks` 数组中的对象：
-
-```js
-{
-  title: "项目标题",
-  en: "PROJECT TITLE",
-  category: "Film / AI",
-  role: "你的项目职责",
-  description: "项目简介",
-  thumb: "assets/thumbnails/封面.jpg",
-  video: { mode: "local", src: "assets/videos/项目.mp4" }
-}
-```
-
-### 视频链接 / 视频模式
-
-支持三种模式：
-
-```js
-video: { mode: "local", src: "assets/videos/demo.mp4" }
-video: { mode: "embed", src: "https://外部平台的-iframe-地址" }
-video: { mode: "link", src: "https://外部视频链接", poster: "assets/thumbnails/封面.jpg" }
-```
-
-如果暂时没有视频链接，可以删掉 `video` 字段，页面会保留封面并显示 `Coming Soon / 暂未上线`。本地视频放进 `assets/videos/`，封面放进 `assets/thumbnails/`。
-
-### 图片路径和图集
-
-所有项目图片统一放进 `assets/images/`。封面统一放进 `assets/thumbnails/`。修改 `thumb` 或 `image` 为对应相对路径；需要图集时修改 `gallery` 数组：
-
-```js
-gallery: [
-  "assets/images/image-01.jpg",
-  "assets/images/image-02.jpg"
-]
-```
-
-点击 Visual 卡片会打开图集弹窗；《未写完的航线》的开发中详情图集由 `caseStudy.gallery` 控制。
-
-### 联系方式
-
-修改 `site.email` 和 `contact.email`。当前网页只保留邮箱，不挂载简历下载链接。
-
-### 简历下载链接
-
-如果未来需要放简历，可在 `contact` 中增加 `resume` 字段，并在 `script.js` 中绑定一个按钮；目前按要求没有加入简历入口。
+selectedWorks、visual、imageFolderImages 为旧版备用数据，目前页面没有直接渲染这些板块。修改当前影片请改 film。
+本站没有简历下载入口；不要把简历 PDF 放进发布目录。
+图片替换时保留大小写一致的相对路径，图片仍放 assets/images，封面放 assets/thumbnails。
+照片及图集保留原文件；不包含 MP4 视频，也不要把百度网盘分享页填写成 video 标签的播放地址。
 
 ## 本地预览
 
-直接双击 `index.html` 一般即可查看。若浏览器限制本地视频或脚本加载，可以在当前文件夹启动任意静态服务器后访问，例如 VS Code Live Server。网页没有后端、数据库、React 或 ComfyUI 依赖。
+解压后双击 index.html。检查影片链接、图集和移动端布局。链接的实际有效期与访问要求以百度网盘为准。
 
-## 上传 GitHub
+## 用 GitHub Desktop 上传（适合这个图片较多的项目）
 
-上传整个项目文件夹时，请保留 `index.html`、`style.css`、`script.js`、`data/` 和 `assets/` 的相对位置。GitHub Pages 可以直接发布根目录，进入仓库的 Settings → Pages，选择部署分支和 `/ (root)` 文件夹即可。网页入口是 `index.html`。
+1. 登录你自己的 GitHub 账号，在 GitHub Desktop 选择 File → New repository。
+2. 新建仓库，例如 portfolio-jyj。打开仓库目录。
+3. 将本压缩包解压后的文件和 assets、data 文件夹复制到仓库根目录，让 index.html 位于最外层。不要上传 ZIP 本身，不要复制旧项目的 .git。
+4. Commit 后 Publish repository。免费账号使用公开仓库部署 Pages；发布的源码和图片也会公开。
+5. 在 GitHub 仓库 Settings → Pages 中选择 Deploy from a branch，选择实际上传分支（通常 main）和 / (root)，Save。
+6. 等待部署完成，从 Pages 页面打开显示的网址。常见格式为 https://用户名.github.io/仓库名/。
 
-## 当前内容说明
+后续修改数据或图片后 Commit、Push 即会重新部署。
+若旧仓库提交历史包含大视频，仅删掉当前文件不一定能解决推送失败；用这个不带历史的文件包建立新仓库更简单。
+GitHub Pages 的国内访问速度会随网络变化；此版本不代表已经完成腾讯云大陆部署。
 
-- 《未写完的航线》明确标注为 `In Development / 开发中`，没有写成完成项目。
-- 《青山医靠》内容强调执行导演、AI 图像生成与剪辑参与；AI 视觉排版部分作为视觉策划图集展示。
-- 《显影》标注为导演；《潮汐与尘埃》标注为个人完成；《西溪且留下》标注为拍摄策划与剪辑；微综艺标注为参演。
+官方指南：https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site

@@ -6,3 +6,10 @@ Thumbs.db
 *.log
 assets/videos/*.mp4
 assets/thumbnails/*.mp4
+*.mp4
+*.mov
+*.webm
+.env
+.env.*
+!.env.example
+node_modules/
